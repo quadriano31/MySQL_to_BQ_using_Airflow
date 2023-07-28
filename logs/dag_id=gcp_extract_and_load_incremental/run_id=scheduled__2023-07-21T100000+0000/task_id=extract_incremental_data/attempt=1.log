@@ -1,0 +1,15 @@
+[2023-07-28T12:02:24.438+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcp_extract_and_load_incremental.extract_incremental_data scheduled__2023-07-21T10:00:00+00:00 [queued]>
+[2023-07-28T12:02:24.546+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcp_extract_and_load_incremental.extract_incremental_data scheduled__2023-07-21T10:00:00+00:00 [queued]>
+[2023-07-28T12:02:24.547+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2023-07-28T12:02:24.712+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): extract_incremental_data> on 2023-07-21 10:00:00+00:00
+[2023-07-28T12:02:24.749+0000] {standard_task_runner.py:57} INFO - Started process 3041 to run task
+[2023-07-28T12:02:24.814+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'gcp_extract_and_load_incremental', 'extract_incremental_data', 'scheduled__2023-07-21T10:00:00+00:00', '--job-id', '193', '--raw', '--subdir', 'DAGS_FOLDER/incremental_copy.py', '--cfg-path', '/tmp/tmp0293d9sq']
+[2023-07-28T12:02:24.972+0000] {standard_task_runner.py:85} INFO - Job 193: Subtask extract_incremental_data
+[2023-07-28T12:02:25.979+0000] {task_command.py:410} INFO - Running <TaskInstance: gcp_extract_and_load_incremental.extract_incremental_data scheduled__2023-07-21T10:00:00+00:00 [running]> on host a7b633085ee1
+[2023-07-28T12:02:26.960+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='gcp_extract_and_load_incremental' AIRFLOW_CTX_TASK_ID='extract_incremental_data' AIRFLOW_CTX_EXECUTION_DATE='2023-07-21T10:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-07-21T10:00:00+00:00'
+[2023-07-28T12:02:27.044+0000] {base.py:73} INFO - Using connection ID 'mysql_conn_id' for task execution.
+[2023-07-28T12:02:27.149+0000] {base.py:73} INFO - Using connection ID 'mysql_conn_id' for task execution.
+[2023-07-28T12:02:27.208+0000] {python.py:183} INFO - Done. Returned value was: [{'emp_no': 0, 'birth_date': datetime.date(2000, 1, 15), 'first_name': 'John', 'last_name': 'Doe', 'gender': 'M', 'hire_date': datetime.date(2023, 7, 28)}]
+[2023-07-28T12:02:27.443+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=gcp_extract_and_load_incremental, task_id=extract_incremental_data, execution_date=20230721T100000, start_date=20230728T120224, end_date=20230728T120227
+[2023-07-28T12:02:27.638+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2023-07-28T12:02:27.849+0000] {taskinstance.py:2653} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,81 @@
+[2023-07-27T16:08:13.224+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_and_load.gcp_load __airflow_temporary_run_2023-07-27T16:07:50.664278+00:00__ [queued]>
+[2023-07-27T16:08:13.276+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_and_load.gcp_load __airflow_temporary_run_2023-07-27T16:07:50.664278+00:00__ [queued]>
+[2023-07-27T16:08:13.277+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2023-07-27T16:08:13.493+0000] {taskinstance.py:1327} INFO - Executing <Task(_PythonDecoratedOperator): gcp_load> on 2023-07-26 00:00:00+00:00
+[2023-07-27T16:08:13.542+0000] {standard_task_runner.py:57} INFO - Started process 1185 to run task
+[2023-07-27T16:08:13.582+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'extract_and_load', 'gcp_load', '__***_temporary_run_2023-07-27T16:07:50.664278+00:00__', '--job-id', '59', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmpro16r418']
+[2023-07-27T16:08:13.601+0000] {standard_task_runner.py:85} INFO - Job 59: Subtask gcp_load
+[2023-07-27T16:08:13.960+0000] {task_command.py:410} INFO - Running <TaskInstance: extract_and_load.gcp_load __airflow_temporary_run_2023-07-27T16:07:50.664278+00:00__ [running]> on host b38a1c3e4ebf
+[2023-07-27T16:08:14.537+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_and_load' AIRFLOW_CTX_TASK_ID='gcp_load' AIRFLOW_CTX_EXECUTION_DATE='2023-07-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='__***_temporary_run_2023-07-27T16:07:50.664278+00:00__'
+[2023-07-27T16:08:15.335+0000] {base.py:73} INFO - Using connection ID 'mysql_conn_id' for task execution.
+[2023-07-27T16:08:15.436+0000] {sql.py:375} INFO - Running statement:  SELECT table_name
+                      FROM information_schema.tables
+                      WHERE table_schema = 'employees' AND table_name = 'employees' , parameters: None
+[2023-07-27T16:08:15.437+0000] {sql.py:384} INFO - Rows affected: 1
+[2023-07-27T16:08:15.439+0000] {logging_mixin.py:150} INFO - (('employees',),)
+[2023-07-27T16:08:15.462+0000] {base.py:73} INFO - Using connection ID 'mysql_conn_id' for task execution.
+[2023-07-27T16:08:24.546+0000] {logging_mixin.py:150} INFO - importing rows 0 to 300024... for table employees 
+[2023-07-27T16:08:28.972+0000] {local_task_job_runner.py:292} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2023-07-27T16:08:28.975+0000] {process_utils.py:135} INFO - Sending Signals.SIGTERM to group 1185. PIDs of all processes in the group: [1185]
+[2023-07-27T16:08:28.976+0000] {process_utils.py:86} INFO - Sending the signal Signals.SIGTERM to group 1185
+[2023-07-27T16:08:28.977+0000] {taskinstance.py:1517} ERROR - Received SIGTERM. Terminating subprocesses.
+[2023-07-27T16:08:29.011+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/decorators/base.py", line 220, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/test.py", line 79, in gcp_load
+    job = client.load_table_from_dataframe(df, table_id, job_config=job_config)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/client.py", line 2745, in load_table_from_dataframe
+    timeout=timeout,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/client.py", line 2487, in load_table_from_file
+    file_obj, job_resource, size, num_retries, timeout, project=project
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/client.py", line 3054, in _do_multipart_upload
+    self._http, data, metadata, _GENERIC_CONTENT_TYPE, timeout=timeout
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/resumable_media/requests/upload.py", line 154, in transmit
+    retriable_request, self._get_status_code, self._retry_strategy
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/resumable_media/requests/_request_helpers.py", line 155, in wait_and_retry
+    response = func()
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/resumable_media/requests/upload.py", line 146, in retriable_request
+    method, url, data=payload, headers=headers, timeout=timeout
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/auth/transport/requests.py", line 555, in request
+    **kwargs
+  File "/home/airflow/.local/lib/python3.7/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/requests/adapters.py", line 497, in send
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 721, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 466, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 461, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/lib/python3.7/http/client.py", line 1373, in getresponse
+    response.begin()
+  File "/usr/local/lib/python3.7/http/client.py", line 319, in begin
+    version, status, reason = self._read_status()
+  File "/usr/local/lib/python3.7/http/client.py", line 280, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/local/lib/python3.7/ssl.py", line 1071, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/local/lib/python3.7/ssl.py", line 929, in read
+    return self._sslobj.read(len, buffer)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1519, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2023-07-27T16:08:29.031+0000] {taskinstance.py:1350} INFO - Marking task as FAILED. dag_id=extract_and_load, task_id=gcp_load, execution_date=20230726T000000, start_date=20230727T160813, end_date=20230727T160829
+[2023-07-27T16:08:29.092+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 59 for task gcp_load ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(extract_and_load, gcp_load, __airflow_temporary_run_2023-07-27T16:07:50.664278+00:00__, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'gcp_load', 'dag_id': 'extract_and_load', 'run_id': '__airflow_temporary_run_2023-07-27T16:07:50.664278+00:00__', 'map_index': -1, 'start_date': datetime.datetime(2023, 7, 27, 16, 8, 13, 225662, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2023, 7, 27, 16, 8, 29, 29988, tzinfo=Timezone('UTC')), 'duration': 15}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 1185)
+[2023-07-27T16:08:29.178+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=1185, status='terminated', exitcode=1, started='16:08:12') (1185) terminated with exit code 1

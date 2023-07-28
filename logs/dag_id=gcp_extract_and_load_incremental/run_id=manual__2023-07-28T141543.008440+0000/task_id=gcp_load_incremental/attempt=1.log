@@ -1,0 +1,15 @@
+[2023-07-28T14:16:12.680+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcp_extract_and_load_incremental.gcp_load_incremental manual__2023-07-28T14:15:43.008440+00:00 [queued]>
+[2023-07-28T14:16:12.775+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcp_extract_and_load_incremental.gcp_load_incremental manual__2023-07-28T14:15:43.008440+00:00 [queued]>
+[2023-07-28T14:16:12.777+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2023-07-28T14:16:13.004+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): gcp_load_incremental> on 2023-07-28 14:15:43.008440+00:00
+[2023-07-28T14:16:13.074+0000] {standard_task_runner.py:57} INFO - Started process 8458 to run task
+[2023-07-28T14:16:13.103+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'gcp_extract_and_load_incremental', 'gcp_load_incremental', 'manual__2023-07-28T14:15:43.008440+00:00', '--job-id', '230', '--raw', '--subdir', 'DAGS_FOLDER/incremental_copy.py', '--cfg-path', '/tmp/tmpoogu19ik']
+[2023-07-28T14:16:13.132+0000] {standard_task_runner.py:85} INFO - Job 230: Subtask gcp_load_incremental
+[2023-07-28T14:16:13.445+0000] {task_command.py:410} INFO - Running <TaskInstance: gcp_extract_and_load_incremental.gcp_load_incremental manual__2023-07-28T14:15:43.008440+00:00 [running]> on host a7b633085ee1
+[2023-07-28T14:16:15.114+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='gcp_extract_and_load_incremental' AIRFLOW_CTX_TASK_ID='gcp_load_incremental' AIRFLOW_CTX_EXECUTION_DATE='2023-07-28T14:15:43.008440+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-07-28T14:15:43.008440+00:00'
+[2023-07-28T14:16:16.856+0000] {logging_mixin.py:150} INFO - Importing 4 rows to marine-fusion-394105.employees_db.employees...
+[2023-07-28T14:16:21.945+0000] {logging_mixin.py:150} INFO - Data load error: 400 Error while reading data, error message: Failed to parse JSON: No active field found.; ParsedString returned false File: prod-scotty-624687350644-e64e600e-85f1-449c-afe8-54121e2462f7
+[2023-07-28T14:16:21.984+0000] {python.py:183} INFO - Done. Returned value was: None
+[2023-07-28T14:16:22.134+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=gcp_extract_and_load_incremental, task_id=gcp_load_incremental, execution_date=20230728T141543, start_date=20230728T141612, end_date=20230728T141622
+[2023-07-28T14:16:22.413+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2023-07-28T14:16:22.717+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

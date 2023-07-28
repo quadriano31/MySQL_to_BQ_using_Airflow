@@ -1,0 +1,16 @@
+[2023-07-28T06:45:57.925+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: full_copy.gcp_load scheduled__2023-06-25T23:00:00+00:00 [queued]>
+[2023-07-28T06:45:58.512+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: full_copy.gcp_load scheduled__2023-06-25T23:00:00+00:00 [queued]>
+[2023-07-28T06:45:58.515+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2023-07-28T06:45:59.185+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): gcp_load> on 2023-06-25 23:00:00+00:00
+[2023-07-28T06:45:59.619+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'full_copy', 'gcp_load', 'scheduled__2023-06-25T23:00:00+00:00', '--job-id', '157', '--raw', '--subdir', 'DAGS_FOLDER/full_copy.py', '--cfg-path', '/tmp/tmpp768dp8u']
+[2023-07-28T06:45:59.726+0000] {standard_task_runner.py:85} INFO - Job 157: Subtask gcp_load
+[2023-07-28T06:45:59.364+0000] {standard_task_runner.py:57} INFO - Started process 8149 to run task
+[2023-07-28T06:46:02.097+0000] {task_command.py:410} INFO - Running <TaskInstance: full_copy.gcp_load scheduled__2023-06-25T23:00:00+00:00 [running]> on host b38a1c3e4ebf
+[2023-07-28T06:46:05.987+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='full_copy' AIRFLOW_CTX_TASK_ID='gcp_load' AIRFLOW_CTX_EXECUTION_DATE='2023-06-25T23:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-06-25T23:00:00+00:00'
+[2023-07-28T06:46:11.775+0000] {base.py:73} INFO - Using connection ID 'mysql_conn_id' for task execution.
+[2023-07-28T06:46:47.856+0000] {logging_mixin.py:150} INFO - Importing rows 0 to 300024... for table employees
+[2023-07-28T06:47:04.378+0000] {logging_mixin.py:150} INFO - Loaded 6300504 rows and 6 columns to marine-fusion-394105.employees_db.employees
+[2023-07-28T06:47:04.390+0000] {python.py:183} INFO - Done. Returned value was: None
+[2023-07-28T06:47:04.651+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=full_copy, task_id=gcp_load, execution_date=20230625T230000, start_date=20230728T064558, end_date=20230728T064704
+[2023-07-28T06:47:05.427+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2023-07-28T06:47:05.599+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

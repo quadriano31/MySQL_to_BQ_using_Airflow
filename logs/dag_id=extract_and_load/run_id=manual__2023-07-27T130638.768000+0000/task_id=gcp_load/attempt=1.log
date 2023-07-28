@@ -1,0 +1,14 @@
+[2023-07-27T13:07:18.604+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_and_load.gcp_load manual__2023-07-27T13:06:38.768000+00:00 [queued]>
+[2023-07-27T13:07:18.704+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_and_load.gcp_load manual__2023-07-27T13:06:38.768000+00:00 [queued]>
+[2023-07-27T13:07:18.705+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2023-07-27T13:07:18.870+0000] {taskinstance.py:1327} INFO - Executing <Task(_PythonDecoratedOperator): gcp_load> on 2023-07-27 13:06:38.768000+00:00
+[2023-07-27T13:07:18.943+0000] {standard_task_runner.py:57} INFO - Started process 2610 to run task
+[2023-07-27T13:07:18.948+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'extract_and_load', 'gcp_load', 'manual__2023-07-27T13:06:38.768000+00:00', '--job-id', '28', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmpe22bj9ok']
+[2023-07-27T13:07:18.986+0000] {standard_task_runner.py:85} INFO - Job 28: Subtask gcp_load
+[2023-07-27T13:07:19.358+0000] {task_command.py:410} INFO - Running <TaskInstance: extract_and_load.gcp_load manual__2023-07-27T13:06:38.768000+00:00 [running]> on host 54db880c2dec
+[2023-07-27T13:07:20.438+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_and_load' AIRFLOW_CTX_TASK_ID='gcp_load' AIRFLOW_CTX_EXECUTION_DATE='2023-07-27T13:06:38.768000+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-07-27T13:06:38.768000+00:00'
+[2023-07-27T13:07:20.454+0000] {logging_mixin.py:150} INFO - Data load error: [Errno 2] No such file or directory: 'marine-fusion-394105-6f8656eedaed.json'
+[2023-07-27T13:07:20.456+0000] {python.py:183} INFO - Done. Returned value was: None
+[2023-07-27T13:07:20.530+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=extract_and_load, task_id=gcp_load, execution_date=20230727T130638, start_date=20230727T130718, end_date=20230727T130720
+[2023-07-27T13:07:20.724+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2023-07-27T13:07:20.914+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

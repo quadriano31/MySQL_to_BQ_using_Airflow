@@ -1,0 +1,6 @@
+/mysql_dbt
+.env
+*.json
+dags/dbt/
+logs/scheduler
+mysql_data

@@ -1,0 +1,21 @@
+[2023-07-28T14:27:48.796+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: full_copy.sql_extract manual__2023-07-28T14:27:34.368257+00:00 [queued]>
+[2023-07-28T14:27:48.853+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: full_copy.sql_extract manual__2023-07-28T14:27:34.368257+00:00 [queued]>
+[2023-07-28T14:27:48.854+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2023-07-28T14:27:49.087+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): sql_extract> on 2023-07-28 14:27:34.368257+00:00
+[2023-07-28T14:27:49.129+0000] {standard_task_runner.py:57} INFO - Started process 8811 to run task
+[2023-07-28T14:27:49.155+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'full_copy', 'sql_extract', 'manual__2023-07-28T14:27:34.368257+00:00', '--job-id', '233', '--raw', '--subdir', 'DAGS_FOLDER/full_copy.py', '--cfg-path', '/tmp/tmp0o_b7sjn']
+[2023-07-28T14:27:49.171+0000] {standard_task_runner.py:85} INFO - Job 233: Subtask sql_extract
+[2023-07-28T14:27:49.500+0000] {task_command.py:410} INFO - Running <TaskInstance: full_copy.sql_extract manual__2023-07-28T14:27:34.368257+00:00 [running]> on host a7b633085ee1
+[2023-07-28T14:27:50.284+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='full_copy' AIRFLOW_CTX_TASK_ID='sql_extract' AIRFLOW_CTX_EXECUTION_DATE='2023-07-28T14:27:34.368257+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-07-28T14:27:34.368257+00:00'
+[2023-07-28T14:27:50.407+0000] {base.py:73} INFO - Using connection ID 'mysql_conn_id' for task execution.
+[2023-07-28T14:27:50.563+0000] {sql.py:375} INFO - Running statement: 
+            SELECT table_name
+            FROM information_schema.tables
+            WHERE table_schema = 'employees' AND table_name = 'employees'
+        , parameters: None
+[2023-07-28T14:27:50.566+0000] {sql.py:384} INFO - Rows affected: 1
+[2023-07-28T14:27:50.569+0000] {logging_mixin.py:150} INFO - (('employees',),)
+[2023-07-28T14:27:50.569+0000] {python.py:183} INFO - Done. Returned value was: ('employees',)
+[2023-07-28T14:27:50.717+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=full_copy, task_id=sql_extract, execution_date=20230728T142734, start_date=20230728T142748, end_date=20230728T142750
+[2023-07-28T14:27:50.893+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2023-07-28T14:27:51.310+0000] {taskinstance.py:2653} INFO - 1 downstream tasks scheduled from follow-on schedule check

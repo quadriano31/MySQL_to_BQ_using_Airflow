@@ -1,0 +1,50 @@
+[2023-07-27T14:38:14.982+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_and_load.gcp_load manual__2023-07-27T14:38:03.604379+00:00 [queued]>
+[2023-07-27T14:38:15.008+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_and_load.gcp_load manual__2023-07-27T14:38:03.604379+00:00 [queued]>
+[2023-07-27T14:38:15.009+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2023-07-27T14:38:15.076+0000] {taskinstance.py:1327} INFO - Executing <Task(_PythonDecoratedOperator): gcp_load> on 2023-07-27 14:38:03.604379+00:00
+[2023-07-27T14:38:15.086+0000] {standard_task_runner.py:57} INFO - Started process 5853 to run task
+[2023-07-27T14:38:15.101+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'extract_and_load', 'gcp_load', 'manual__2023-07-27T14:38:03.604379+00:00', '--job-id', '38', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmp2x_vghq6']
+[2023-07-27T14:38:15.113+0000] {standard_task_runner.py:85} INFO - Job 38: Subtask gcp_load
+[2023-07-27T14:38:15.246+0000] {task_command.py:410} INFO - Running <TaskInstance: extract_and_load.gcp_load manual__2023-07-27T14:38:03.604379+00:00 [running]> on host 54db880c2dec
+[2023-07-27T14:38:15.516+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_and_load' AIRFLOW_CTX_TASK_ID='gcp_load' AIRFLOW_CTX_EXECUTION_DATE='2023-07-27T14:38:03.604379+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-07-27T14:38:03.604379+00:00'
+[2023-07-27T14:38:15.663+0000] {base.py:73} INFO - Using connection ID 'mysql_conn_id' for task execution.
+[2023-07-27T14:38:18.885+0000] {logging_mixin.py:150} INFO - importing rows 0 to 300024... for table employees 
+[2023-07-27T14:38:20.546+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/decorators/base.py", line 220, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/test.py", line 54, in gcp_load
+    df.to_gbq(destination_table=f'{dataset_ref}.src_{table_name}', project_id=project_id, credentials=credentials, if_exists="replace")
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/frame.py", line 1940, in to_gbq
+    credentials=credentials,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/gbq.py", line 223, in to_gbq
+    credentials=credentials,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas_gbq/gbq.py", line 1228, in to_gbq
+    billing_project=project_id,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas_gbq/gbq.py", line 611, in load_data
+    billing_project=billing_project,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas_gbq/load.py", line 250, in load_chunks
+    billing_project=billing_project,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas_gbq/load.py", line 136, in load_parquet
+    project=billing_project,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/client.py", line 2707, in load_table_from_dataframe
+    parquet_use_compliant_nested_type=True,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/_pandas_helpers.py", line 719, in dataframe_to_parquet
+    arrow_table = dataframe_to_arrow(dataframe, bq_schema)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/_pandas_helpers.py", line 662, in dataframe_to_arrow
+    bq_to_arrow_array(get_column_or_index(dataframe, bq_field.name), bq_field)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/_pandas_helpers.py", line 380, in bq_to_arrow_array
+    return pyarrow.Array.from_pandas(series, type=arrow_type)
+  File "pyarrow/array.pxi", line 1044, in pyarrow.lib.Array.from_pandas
+  File "pyarrow/array.pxi", line 316, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 83, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 123, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: Expected bytes, got a 'datetime.date' object
+[2023-07-27T14:38:20.579+0000] {taskinstance.py:1350} INFO - Marking task as FAILED. dag_id=extract_and_load, task_id=gcp_load, execution_date=20230727T143803, start_date=20230727T143814, end_date=20230727T143820
+[2023-07-27T14:38:20.647+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 38 for task gcp_load (Expected bytes, got a 'datetime.date' object; 5853)
+[2023-07-27T14:38:20.720+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2023-07-27T14:38:20.779+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,26 @@
+[2023-07-27T14:52:57.185+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_and_load.gcp_load manual__2023-07-27T14:52:47.633731+00:00 [queued]>
+[2023-07-27T14:52:57.231+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_and_load.gcp_load manual__2023-07-27T14:52:47.633731+00:00 [queued]>
+[2023-07-27T14:52:57.238+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2023-07-27T14:52:57.309+0000] {taskinstance.py:1327} INFO - Executing <Task(_PythonDecoratedOperator): gcp_load> on 2023-07-27 14:52:47.633731+00:00
+[2023-07-27T14:52:57.326+0000] {standard_task_runner.py:57} INFO - Started process 6397 to run task
+[2023-07-27T14:52:57.347+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'extract_and_load', 'gcp_load', 'manual__2023-07-27T14:52:47.633731+00:00', '--job-id', '46', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmpiiapsjux']
+[2023-07-27T14:52:57.360+0000] {standard_task_runner.py:85} INFO - Job 46: Subtask gcp_load
+[2023-07-27T14:52:57.522+0000] {task_command.py:410} INFO - Running <TaskInstance: extract_and_load.gcp_load manual__2023-07-27T14:52:47.633731+00:00 [running]> on host 54db880c2dec
+[2023-07-27T14:52:57.967+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_and_load' AIRFLOW_CTX_TASK_ID='gcp_load' AIRFLOW_CTX_EXECUTION_DATE='2023-07-27T14:52:47.633731+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-07-27T14:52:47.633731+00:00'
+[2023-07-27T14:52:58.086+0000] {base.py:73} INFO - Using connection ID 'mysql_conn_id' for task execution.
+[2023-07-27T14:53:05.966+0000] {logging_mixin.py:150} INFO - importing rows 0 to 300024... for table employees 
+[2023-07-27T14:53:05.968+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/decorators/base.py", line 220, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/test.py", line 56, in gcp_load
+    if isinstance(df[column].iloc[0], datetime.date):
+TypeError: isinstance() arg 2 must be a type or tuple of types
+[2023-07-27T14:53:06.028+0000] {taskinstance.py:1350} INFO - Marking task as FAILED. dag_id=extract_and_load, task_id=gcp_load, execution_date=20230727T145247, start_date=20230727T145257, end_date=20230727T145306
+[2023-07-27T14:53:06.109+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 46 for task gcp_load (isinstance() arg 2 must be a type or tuple of types; 6397)
+[2023-07-27T14:53:06.224+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2023-07-27T14:53:06.326+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check
