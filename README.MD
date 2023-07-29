@@ -42,9 +42,18 @@ To Download the Employee DB and load to MySQL
 
 ```
 
-airflow tasks test extract_and_load sql_extract 2023-07-26
+## To Setup MYSQL connection to Airflow 
 
-airflow tasks test gcp_extract_and_load_incremental sql_extract 2023-07-26
+```bash
+    run docker network inspect 
+    Copy the gateway  
+    This will be used to setup the connection in airflow 
+    The gateway will be the host the Airflow will use to connect to MySQL 
+    Login -- root
+    Leave password blank 
+```
+
+
 ## TO ENABLE BIN LOG REPLICATION ON MYSQL 
 
 Create a .cnf file and map it to MySQL 
@@ -75,17 +84,38 @@ Enter the container
     from information_schema.global_variables where variable_name='log_bin';
 ```
 
+## SETUP DBT CORE
+
+```bash
+    cd dags
+    mkdir dbt 
+    cd dbt 
+    python -m venv dbt
+    cd dbt/Scripts
+    activate
+    cd ..
+    pip install dbt-bigquery
+    dbt init (and follow the prompt)
+    Test using dbt debug
+
+```
+Create a new profiles.yml and add project-ID
+
+Create .sql file for transformation
+To run transformation 
+
+```bash
+    dbt run
+```
+
 ### CREATE A GCP PROJECT 
 
 Create a GCP project, BigQuery Dataset and Table 
 Modify the CONFIG.py file and add the new details created accordingly 
 Create BigQuery Dataset [click here](https://cloud.google.com/bigquery/docs/datasets)
 
-
-
 ### Permisions to give service account 
-Bigquery Admin
-or 
+Bigquery Admin or all of the following 
 BigQuery Connection admin
 Bigquery Connection user
 BigQuery user

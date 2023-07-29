@@ -4,6 +4,7 @@ import os
 
 from airflow.models import DAG
 from airflow.operators.python_operator import PythonOperator
+from airflow.operators.bash_operator import BashOperator
 
 from airflow.providers.mysql.hooks.mysql import MySqlHook
 from google.cloud import bigquery
@@ -15,6 +16,15 @@ from packages.config import CONFIG
 # Set Google Cloud credentials file path
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/opt/airflow/dags/marine-fusion-394105-6f8656eedaed.json'
 
+#Uncomment to add path and dbt to airflow 
+
+#Set path to DBT project and Path to DBT VENV
+#PATH_TO_DBT_PROJECT = "/opt/airflow/dags/dbt/mysql_gcp/"
+#PATH_TO_DBT_VENV = "/opt/airflow/dags/dbt/dbt/Scripts/activate"
+
+#dbt_activate_cmd = f"source {PATH_TO_DBT_VENV}"
+
+
 # Define default_args dictionary for the DAG
 default_args = {
     'owner': 'airflow',
@@ -23,7 +33,7 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
-    'retry_delay': timedelta(minutes=5),
+    'retry_delay': timedelta(minutes=1),
 }
 
 # Instantiate the DAG
@@ -98,6 +108,15 @@ gcp_load_task = PythonOperator(
     op_args=[sql_extract_task.output],
     dag=dag,
 )
+##
+#Bash Operator to run dbt run 
+# dbt_run = BashOperator(
+#     task_id="dbt_run",
+#     bash_command=f". {PATH_TO_DBT_VENV} ; {PATH_TO_DBT_PROJECT} dbt run",  # Use the full path to the dbt binary within the virtual environment
+#     dag=dag,
+# )
 
 # Set task dependencies
+#sql_extract_task >> gcp_load_task >> dbt_run
+
 gcp_load_task.set_upstream(sql_extract_task)

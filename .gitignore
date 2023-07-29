@@ -1,7 +1,7 @@
 /mysql_dbt
 .env
 *.json
-
 logs/scheduler
 mysql_data
 logs/dag_processor_manager/dag_processor_manager.log
+dags/dbt

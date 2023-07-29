@@ -1,0 +1,23 @@
+[2023-07-29T08:30:21.102+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: full_copy.dbt_run manual__2023-07-29T08:28:29.735480+00:00 [queued]>
+[2023-07-29T08:30:21.148+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: full_copy.dbt_run manual__2023-07-29T08:28:29.735480+00:00 [queued]>
+[2023-07-29T08:30:21.149+0000] {taskinstance.py:1308} INFO - Starting attempt 2 of 2
+[2023-07-29T08:30:21.238+0000] {taskinstance.py:1327} INFO - Executing <Task(BashOperator): dbt_run> on 2023-07-29 08:28:29.735480+00:00
+[2023-07-29T08:30:21.260+0000] {standard_task_runner.py:57} INFO - Started process 853 to run task
+[2023-07-29T08:30:21.285+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'full_copy', 'dbt_run', 'manual__2023-07-29T08:28:29.735480+00:00', '--job-id', '281', '--raw', '--subdir', 'DAGS_FOLDER/full_copy.py', '--cfg-path', '/tmp/tmpr0901c9h']
+[2023-07-29T08:30:21.297+0000] {standard_task_runner.py:85} INFO - Job 281: Subtask dbt_run
+[2023-07-29T08:30:21.465+0000] {task_command.py:410} INFO - Running <TaskInstance: full_copy.dbt_run manual__2023-07-29T08:28:29.735480+00:00 [running]> on host e6ac5424eb0d
+[2023-07-29T08:30:21.690+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='full_copy' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2023-07-29T08:28:29.735480+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-07-29T08:28:29.735480+00:00'
+[2023-07-29T08:30:21.693+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2023-07-29T08:30:21.695+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'source /opt/***/dags/dbt/dbt/Scripts/activate && /opt/***/dags/dbt/mysql_gcp//dbt run ']
+[2023-07-29T08:30:21.728+0000] {subprocess.py:86} INFO - Output:
+[2023-07-29T08:30:21.744+0000] {subprocess.py:93} INFO - /bin/bash: line 1: /opt/***/dags/dbt/mysql_gcp//dbt: No such file or directory
+[2023-07-29T08:30:21.748+0000] {subprocess.py:97} INFO - Command exited with return code 127
+[2023-07-29T08:30:21.795+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/bash.py", line 211, in execute
+    f"Bash command failed. The command returned a non-zero exit code {result.exit_code}."
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2023-07-29T08:30:21.864+0000] {taskinstance.py:1350} INFO - Marking task as FAILED. dag_id=full_copy, task_id=dbt_run, execution_date=20230729T082829, start_date=20230729T083021, end_date=20230729T083021
+[2023-07-29T08:30:21.920+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 281 for task dbt_run (Bash command failed. The command returned a non-zero exit code 127.; 853)
+[2023-07-29T08:30:21.944+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2023-07-29T08:30:22.010+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check
