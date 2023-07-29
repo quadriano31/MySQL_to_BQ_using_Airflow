@@ -4,7 +4,7 @@ This code allows you to perform full or incremental load to BigQuery from MySQL 
 
 
 ## Folder structure
-
+```bash
 Airflow image --
     ---Dockerfile
     ---requirements.txt
@@ -23,7 +23,7 @@ plugins
 docker-compose.yaml
 my.cnf
 README.MD
-
+```
 ## PREREQUISITE 
 
 Docker & DOcker compose 
@@ -119,6 +119,14 @@ Bigquery Admin or all of the following
 BigQuery Connection admin
 Bigquery Connection user
 BigQuery user
+
+## Improvement 
+
+Add CI/CD 
+Migrate Dags to GCP Cloud Composer
+Integrate with GCP Secrets
+Switch from dbt-core to dbt-cloud 
+
 
 ### Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvements, please create a GitHub issue or submit a pull request.
